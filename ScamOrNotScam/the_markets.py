@@ -1,6 +1,6 @@
 import pygame
 
-class Spinner(pygame.sprite.Sprite):
+class Spinner():
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         self.original_image = pygame.image.load("sprites/the_markets.png")
