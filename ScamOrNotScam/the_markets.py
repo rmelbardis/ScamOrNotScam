@@ -40,7 +40,7 @@ class Spinner():
 
     def outcome(self):
         if self.total_degrees_spun < 30:
-            print("Your tokens pump 10%. We're all going to make it!")
+            print("Your tokens pump 10x. We're all going to make it!")
         if self.total_degrees_spun >= 30 and self.total_degrees_spun < 60:
             print("Gary Gensler has entered the chat. Your tokens dump 90%.")
         if self.total_degrees_spun >= 60 and self.total_degrees_spun < 90:
@@ -52,7 +52,7 @@ class Spinner():
         if self.total_degrees_spun >= 150 and self.total_degrees_spun < 180:
             print("Early adopter airdrop! 10 tokens.")
         if self.total_degrees_spun >= 180 and self.total_degrees_spun < 210:
-            print("Your tokens pump 5x. Eyeing up that Lambo.")
+            print("Your tokens pump 5x. That Lambo suddenly seems cheaper.")
         if self.total_degrees_spun >= 210 and self.total_degrees_spun < 240:
             print("Your tokens dump by 45%. At least they didn't halve in value!")
         if self.total_degrees_spun >= 240 and self.total_degrees_spun < 270:
