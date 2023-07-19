@@ -2,6 +2,7 @@ import pygame
 import random
 
 class Spinner():
+
     def __init__(self, x, y, spinner_image, surface):
         self.original_image = spinner_image
         self.image = self.original_image
@@ -10,10 +11,15 @@ class Spinner():
         self.y = y
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
-        self.rotation_speed = random.uniform(40, 90)
+        self.rotation_speed = random.uniform(40, 500)
         self.total_degrees_spun = 0
         self.last_animated = pygame.time.get_ticks()
         self.spinning = False
+
+        pygame.font.init()
+        self.font = pygame.font.SysFont('urwgothic', 40)
+        self.text = self.font.render('', False, (0, 0, 0))
+        self.textrect = self.text.get_rect(topleft=(self.x, self.y + 800))
 
     def update(self):
         if self.spinning:
@@ -34,32 +40,44 @@ class Spinner():
             self.rotation_speed = opening_speed * 0.5 ** (pygame.time.get_ticks()/100 - start_time/100)
 
             if self.rotation_speed <= 0.01:
+
                 self.spinning = False
-                self.rotation_speed = random.uniform(40, 90)
+                self.rotation_speed = random.uniform(40, 500)
                 self.outcome()
 
     def outcome(self):
+        pumps = ["We're all going to make it!",
+                 "That Lambo suddenly seems cheaper.",
+                 "Time to start a youtube channel.",
+                 "You could be a VC!",
+                 "Definitely not the top."]
+
+        dumps = ["Gary Gensler has entered the chat.",
+                 "A major exchange has collapsed."]
+
         if self.total_degrees_spun < 30:
-            print("Your tokens pump 10x. We're all going to make it!")
+            text = f"Your tokens pump 10x. {pumps[random.randint(0, len(pumps))]}"
         if self.total_degrees_spun >= 30 and self.total_degrees_spun < 60:
-            print("Gary Gensler has entered the chat. Your tokens dump 90%.")
+            text = f"{dumps[random.randint(0, len(dumps))]} Your tokens dump 90%."
         if self.total_degrees_spun >= 60 and self.total_degrees_spun < 90:
-            print("It's just a bit of FUD. No one cares.")
+            text = "It's just a bit of FUD. No one cares."
         if self.total_degrees_spun >= 90 and self.total_degrees_spun < 120:
-            print("Rugged. Everything to zero.")
+            text = "Rugged. Everything to zero."
         if self.total_degrees_spun >= 120 and self.total_degrees_spun < 150:
-            print("That whitepaper was well written, you aped in, but it was a scam. Lose 10 tokens.")
+            text = "That whitepaper was well written, you aped in, but it was a scam. Lose 10 tokens."
         if self.total_degrees_spun >= 150 and self.total_degrees_spun < 180:
-            print("Early adopter airdrop! 10 tokens.")
+            text = "Early adopter airdrop! 10 tokens."
         if self.total_degrees_spun >= 180 and self.total_degrees_spun < 210:
-            print("Your tokens pump 5x. That Lambo suddenly seems cheaper.")
+            text = f"Your tokens pump 5x. {pumps[random.randint(0, len(pumps))]}"
         if self.total_degrees_spun >= 210 and self.total_degrees_spun < 240:
-            print("Your tokens dump by 45%. At least they didn't halve in value!")
+            text = "Your tokens dump by 45%. At least they didn't halve in value!"
         if self.total_degrees_spun >= 240 and self.total_degrees_spun < 270:
-            print("You were airdropped a useless governance token! Nothing happens!")
+            text = "You were airdropped a useless governance token! Nothing happens!"
         if self.total_degrees_spun >= 270 and self.total_degrees_spun < 300:
-            print("Rugged. Everything to zero.")
+            text = "Rugged. Founder is living it up in the Bahamas."
         if self.total_degrees_spun >= 300 and self.total_degrees_spun < 330:
-            print(f"You've seen {random.randint(500, 1000)} ads in the metaverse. You've been rewarded with a token!")
+            text = f"You've seen {random.randint(500, 1000)} ads in the metaverse. You've been rewarded with a token!"
         if self.total_degrees_spun >= 330:
-            print("You were airdropped a pointless NFT! Nothing happens!")
+            text = "You were airdropped a pointless NFT! Nothing happens!"
+
+        self.text = self.font.render(text, False, (0, 0, 0))

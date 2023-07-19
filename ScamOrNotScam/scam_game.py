@@ -8,8 +8,8 @@ pygame.display.set_caption('Scam or Not Scam')
 clock = pygame.time.Clock()
 running = True
 
-pin = pygame.image.load("sprites/ping_triangle.png")
-pinrect = pin.get_rect(topleft=(422, 75))
+arrow = pygame.image.load("sprites/arrow.png")
+arrowrect = arrow.get_rect(topleft=(411, 15))
 
 button_image = pygame.image.load("sprites/volatility.png")
 button_pressed = pygame.image.load("sprites/volatility_pressed.png")
@@ -29,7 +29,9 @@ while running:
 
     # GAME RENDER
     screen.blit(spinner.image, spinner.rect)
-    screen.blit(pin, pinrect)
+    screen.blit(spinner.text, spinner.textrect)
+    screen.blit(arrow, arrowrect)
+
 
     if vol_button.draw(screen):
         # spinner.spin(screen)
