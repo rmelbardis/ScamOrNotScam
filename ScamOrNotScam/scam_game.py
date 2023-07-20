@@ -1,45 +1,51 @@
 import pygame
-from ScamOrNotScam.spin_button import Button
-from ScamOrNotScam.the_markets import Spinner
+from ScamOrNotScam.button import Button
+from ScamOrNotScam.spinner import Spinner
+from ScamOrNotScam.gameStateManager import GameStateManager
+from ScamOrNotScam.questions import Questions
+from ScamOrNotScam.the_markets import Markets
 
+# set up the game
 pygame.init()
+pygame.font.init()
+# set up clock for fps
+clock = pygame.time.Clock()
+# draw the screen
 screen = pygame.display.set_mode((1920, 1080))
 pygame.display.set_caption('Scam or Not Scam')
-clock = pygame.time.Clock()
+
+# set up states
+game_state_manager = GameStateManager('questions')
+questions = Questions(screen, game_state_manager)
+markets = Markets(screen, game_state_manager)
+
+states = {'questions': questions, 'markets': markets}
+
 running = True
 
-arrow = pygame.image.load("sprites/arrow.png")
-arrowrect = arrow.get_rect(topleft=(411, 15))
-
-button_image = pygame.image.load("sprites/volatility.png")
-button_pressed = pygame.image.load("sprites/volatility_pressed.png")
-vol_button = Button(x=1000, y=400, unpressed_image=button_image, pressed_image=button_pressed)
-
-spinner_image = pygame.image.load("sprites/the_markets.png")
-spinner = Spinner(x=100, y=150, spinner_image=spinner_image, surface=screen)
+right_arrow = pygame.image.load("sprites/forward.png")
+left_arrow = pygame.image.load("sprites/back.png")
+forward_button = Button(x=1800, y=40, unpressed_image=right_arrow, pressed_image=right_arrow)
+back_button = Button(x=1700, y=40, unpressed_image=left_arrow, pressed_image=left_arrow)
 
 while running:
-
-    screen.fill(color=(203, 230, 159))
 
     # events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # GAME RENDER
-    screen.blit(spinner.image, spinner.rect)
-    screen.blit(spinner.text, spinner.textrect)
-    screen.blit(arrow, arrowrect)
+    # states
+    states[game_state_manager.get_state()].run()
 
+    if forward_button.draw(screen):
+        game_state_manager.set_state('markets')
 
-    if vol_button.draw(screen):
-        # spinner.spin(screen)
-        spinner.image = spinner.original_image
-        spinner.spinning = True
-    spinner.update()
+    if back_button.draw(screen):
+        game_state_manager.set_state('questions')
 
-    pygame.display.flip()
-    clock.tick(60)
+    # update display and fix fps
+    pygame.display.update()
+    clock.tick(50)
 
 pygame.quit()
