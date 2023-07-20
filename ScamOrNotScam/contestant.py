@@ -19,8 +19,8 @@ class Contestant(Button):
         self.score_rect = self.score_text.get_rect(center=(self.name_rect.center[0], self.name_rect.bottom + 20))
 
     def draw(self, display):
-        # call draw from button class
-        super().draw(display)
         # draw text and score
         display.blit(self.name_text, self.name_rect)
         display.blit(self.score_text, self.score_rect)
+
+        return super().draw(display)

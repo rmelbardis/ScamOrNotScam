@@ -30,7 +30,7 @@ class Spinner():
         start_time = now
         opening_speed = self.rotation_speed
 
-        if now - self.last_animated > 15:
+        if now - self.last_animated > 40:
             self.last_animated = now
             self.image = pygame.transform.rotate(self.original_image, -self.total_degrees_spun)
             old_center = self.rect.center
@@ -53,7 +53,12 @@ class Spinner():
 
         dumps = ["Gary Gensler has entered the chat.",
                  "A major exchange has collapsed.",
-                 "Maximum pain."]
+                 "Maximum pain.",
+                 '"Steady lads, deploying more capital."']
+
+        scams = ["That whitepaper was well written, you aped in, but it was a scam.",
+                 "They're open about it being a ponzi, but it's still a ponzi.",
+                 "Those 10,000 cartoon pictures were not the next big thing."]
 
         if self.total_degrees_spun < 30:
             text = f"Your tokens pump 10x. {pumps[random.randint(0, len(pumps) - 1)]}"
@@ -64,7 +69,7 @@ class Spinner():
         if self.total_degrees_spun >= 90 and self.total_degrees_spun < 120:
             text = "Rugged. Everything to zero."
         if self.total_degrees_spun >= 120 and self.total_degrees_spun < 150:
-            text = "That whitepaper was well written, you aped in, but it was a scam. Lose 10 tokens."
+            text =  f"{scams[random.randint(0, len(scams) - 1)]} Lose 10 tokens."
         if self.total_degrees_spun >= 150 and self.total_degrees_spun < 180:
             text = "Early adopter airdrop! Receive 10 tokens."
         if self.total_degrees_spun >= 180 and self.total_degrees_spun < 210:

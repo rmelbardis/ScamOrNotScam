@@ -23,8 +23,8 @@ states = {'questions': questions, 'markets': markets}
 
 running = True
 
-right_arrow = pygame.image.load("sprites/forward.png")
-left_arrow = pygame.image.load("sprites/back.png")
+right_arrow = pygame.image.load("sprites/forward.png").convert_alpha()
+left_arrow = pygame.image.load("sprites/back.png").convert_alpha()
 forward_button = Button(x=1800, y=40, unpressed_image=right_arrow, pressed_image=right_arrow)
 back_button = Button(x=1700, y=40, unpressed_image=left_arrow, pressed_image=left_arrow)
 
@@ -38,11 +38,11 @@ while running:
     # states
     states[game_state_manager.get_state()].run()
 
-    if forward_button.draw(screen):
-        game_state_manager.set_state('markets')
+    # if forward_button.draw(screen):
+    #     game_state_manager.set_state('markets')
 
-    if back_button.draw(screen):
-        game_state_manager.set_state('questions')
+    # if back_button.draw(screen):
+    #     game_state_manager.set_state('questions')
 
     # update display and fix fps
     pygame.display.update()
