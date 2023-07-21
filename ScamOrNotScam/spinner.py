@@ -16,7 +16,7 @@ class Spinner():
         self.last_animated = pygame.time.get_ticks()
         self.spinning = False
 
-        self.font = pygame.font.Font('fonts/proxima_nova.ttf', 40)
+        self.font = pygame.font.Font('fonts/proxima_nova.ttf', 36)
         self.text = self.font.render('', False, (0, 0, 0))
         self.textrect = self.text.get_rect(topleft=(self.x, self.y + 775))
 
