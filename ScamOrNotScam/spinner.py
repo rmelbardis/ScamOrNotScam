@@ -3,15 +3,17 @@ import random
 
 class Spinner():
 
-    def __init__(self, x, y, spinner_image, display):
+    def __init__(self, x, y, spinner_image, display, contestant):
         self.original_image = spinner_image
         self.image = self.original_image
         self.display = display
         self.x = x
         self.y = y
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
+        self.contestant = contestant
 
-        self.rotation_speed = random.uniform(40, 500)
+        # self.rotation_speed = random.uniform(40, 500)
+        self.rotation_speed = 5
         self.total_degrees_spun = 0
         self.last_animated = pygame.time.get_ticks()
         self.spinning = False
@@ -73,14 +75,18 @@ class Spinner():
 
         if self.total_degrees_spun < 30:
             self.text = f"Your tokens pump 10x. {pumps[random.randint(0, len(pumps) - 1)]}"
+            self.contestant.score *= 10
         if self.total_degrees_spun >= 30 and self.total_degrees_spun < 60:
             self.text = f"{dumps[random.randint(0, len(dumps) - 1)]} Your tokens dump 90%."
+            self.contestant.score = round(self.contestant.score * 0.1)
         if self.total_degrees_spun >= 60 and self.total_degrees_spun < 90:
             self.text = "It's just a bit of FUD. No one cares."
         if self.total_degrees_spun >= 90 and self.total_degrees_spun < 120:
             self.text = "Rugged. Everything to zero."
+            self.contestant.score = 0
         if self.total_degrees_spun >= 120 and self.total_degrees_spun < 150:
             self.text =  f"{scams[random.randint(0, len(scams) - 1)]} Lose 10 tokens."
+            self.contestant.score -= 10
         if self.total_degrees_spun >= 150 and self.total_degrees_spun < 180:
             self.text = "Early adopter airdrop! Receive 10 tokens."
         if self.total_degrees_spun >= 180 and self.total_degrees_spun < 210:

@@ -18,7 +18,7 @@ class Markets:
         self.pinrect = self.pin.get_rect(topleft=(411, 15))
 
         spinner_image = pygame.image.load("sprites/the_markets.png").convert_alpha()
-        self.spinner = Spinner(x=100, y=150, spinner_image=spinner_image, display=self.display)
+        self.spinner = Spinner(x=100, y=150, spinner_image=spinner_image, display=self.display, contestant=self.cont_1)
 
     def run(self):
 
