@@ -26,7 +26,7 @@ class Contestant(Button):
         self.score_down_button = Button(x=self.rect.center[0] + 110, y=self.rect.center[1] + 10,
                                         unpressed_image=score_down_image, pressed_image=score_down_image)
 
-    def draw(self, display):
+    def draw_questions(self, display):
         # draw text and score
 
         if self.score_up_button.draw(display):
@@ -35,7 +35,16 @@ class Contestant(Button):
             self.score -=10
 
         self.score_text = self.font.render(str(self.score), True, (0, 0, 0))
-        self.score_rect = self.score_text.get_rect(center=(self.name_rect.center[0], self.name_rect.bottom + 20))
+
+        display.blit(self.name_text, self.name_rect)
+        display.blit(self.score_text, self.score_rect)
+
+        return super().draw(display)
+
+    def draw_markets(self, display):
+
+        # draw text and score
+        self.score_text = self.font.render(str(self.score), True, (0, 0, 0))
 
         display.blit(self.name_text, self.name_rect)
         display.blit(self.score_text, self.score_rect)

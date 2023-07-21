@@ -3,9 +3,12 @@ from ScamOrNotScam.button import Button
 from ScamOrNotScam.spinner import Spinner
 
 class Markets:
-    def __init__(self, display, gameStateManager):
+    def __init__(self, display, gameStateManager, cont_1, cont_2, cont_3):
         self.display = display
         self.gameStateManager = gameStateManager
+        self.cont_1 = cont_1
+        self.cont_2 = cont_2
+        self.cont_3 = cont_3
 
         vol_button_image = pygame.image.load("sprites/volatility.png").convert_alpha()
         vol_button_pressed = pygame.image.load("sprites/volatility_pressed.png").convert_alpha()
@@ -23,9 +26,14 @@ class Markets:
 
         # blitting
         self.display.blit(self.spinner.image, self.spinner.rect)
-        self.display.blit(self.spinner.text, self.spinner.textrect)
+        self.display.blit(self.spinner.textimg, self.spinner.textrect)
         self.display.blit(self.pin, self.pinrect)
 
         if self.vol_button.draw(self.display):
             self.spinner.spinning = True
         self.spinner.update()
+
+        # draw contestants
+        self.cont_1.draw_markets(self.display)
+        self.cont_2.draw_markets(self.display)
+        self.cont_3.draw_markets(self.display)
