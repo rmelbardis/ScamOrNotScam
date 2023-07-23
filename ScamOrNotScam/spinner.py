@@ -13,7 +13,7 @@ class Spinner():
         self.contestant = contestant
 
         # self.rotation_speed = random.uniform(40, 500)
-        self.rotation_speed = 5
+        self.rotation_speed = 4.5
         self.total_degrees_spun = 0
         self.last_animated = pygame.time.get_ticks()
         self.spinning = False
@@ -80,25 +80,30 @@ class Spinner():
             self.text = f"{dumps[random.randint(0, len(dumps) - 1)]} Your tokens dump 90%."
             self.contestant.score = round(self.contestant.score * 0.1)
         if self.total_degrees_spun >= 60 and self.total_degrees_spun < 90:
-            self.text = "It's just a bit of FUD. No one cares."
+            self.text = "It's just FUD. No one cares."
         if self.total_degrees_spun >= 90 and self.total_degrees_spun < 120:
             self.text = "Rugged. Everything to zero."
             self.contestant.score = 0
         if self.total_degrees_spun >= 120 and self.total_degrees_spun < 150:
             self.text =  f"{scams[random.randint(0, len(scams) - 1)]} Lose 10 tokens."
-            self.contestant.score -= 10
+            self.contestant.score = max(0, self.contestant.score - 10)
         if self.total_degrees_spun >= 150 and self.total_degrees_spun < 180:
             self.text = "Early adopter airdrop! Receive 10 tokens."
+            self.contestant.score += 10
         if self.total_degrees_spun >= 180 and self.total_degrees_spun < 210:
             self.text = f"Your tokens pump 5x. {pumps[random.randint(0, len(pumps) - 1)]}"
+            self.contestant.score *= 5
         if self.total_degrees_spun >= 210 and self.total_degrees_spun < 240:
             self.text = "Your tokens dump by 45%. At least they didn't halve in value!"
+            self.contestant.score = round(self.contestant.score * 0.55)
         if self.total_degrees_spun >= 240 and self.total_degrees_spun < 270:
             self.text = "You were airdropped a useless governance token! Nothing happens!"
         if self.total_degrees_spun >= 270 and self.total_degrees_spun < 300:
             self.text = "Rugged. The founder is living it up in the Bahamas."
+            self.contestant.score = 0
         if self.total_degrees_spun >= 300 and self.total_degrees_spun < 330:
             self.text = f"You've seen {random.randint(500, 1000)} ads in the metaverse. You've been rewarded with a token!"
+            self.contestant.score += 1
         if self.total_degrees_spun >= 330:
             self.text = "You were airdropped a pointless NFT! Nothing happens!"
 
