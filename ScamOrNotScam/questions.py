@@ -10,7 +10,7 @@ class Questions:
         self.cont_3 = cont_3
 
         self.logo = pygame.image.load("sprites/sons_logo.png").convert_alpha()
-        self.logorect = self.logo.get_rect(topleft=(100, 150))
+        self.logorect = self.logo.get_rect(topleft=(100, 70))
 
     def run(self):
 

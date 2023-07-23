@@ -12,8 +12,7 @@ class Spinner():
         self.rect = self.image.get_rect(topleft=(self.x, self.y))
         self.contestant = contestant
 
-        # self.rotation_speed = random.uniform(40, 500)
-        self.rotation_speed = 4.5
+        self.rotation_speed = random.uniform(40, 500)
         self.total_degrees_spun = 0
         self.last_animated = pygame.time.get_ticks()
         self.spinning = False
