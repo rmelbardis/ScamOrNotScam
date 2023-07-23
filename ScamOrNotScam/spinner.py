@@ -3,20 +3,30 @@ import random
 
 class Spinner():
 
-    def __init__(self, x, y, spinner_image, display, contestant):
-        self.original_image = spinner_image
-        self.image = self.original_image
+    def __init__(self, x, y, spinner_image, display, degrees, contestant):
+        # set display and x, y coordinates
         self.display = display
         self.x = x
         self.y = y
-        self.rect = self.image.get_rect(topleft=(self.x, self.y))
+
+        # load image
+        self.original_image = spinner_image
+        self.rect = self.original_image.get_rect(topleft=(self.x, self.y))
+        # spin to previous position
+        self.total_degrees_spun = degrees
+        self.image = pygame.transform.rotate(self.original_image, -self.total_degrees_spun)
+        old_center = self.rect.center
+        self.rect = self.image.get_rect(center=old_center)
+
+        # load contestant
         self.contestant = contestant
 
+        # set random rotation speed, check time and set spinning to false
         self.rotation_speed = random.uniform(40, 500)
-        self.total_degrees_spun = 0
         self.last_animated = pygame.time.get_ticks()
         self.spinning = False
 
+        # initiate spinner outcome text and pass empty string
         self.font = pygame.font.Font('fonts/proxima_nova.ttf', 36)
         self.text = ''
         self.textimg = self.font.render(self.text, False, (0, 0, 0))

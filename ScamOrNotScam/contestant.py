@@ -26,15 +26,24 @@ class Contestant(Button):
         self.score_down_button = Button(x=self.rect.center[0] + 110, y=self.rect.center[1] + 10,
                                         unpressed_image=score_down_image, pressed_image=score_down_image)
 
-        # create scam and not scam selection buttons
+        # create scam and not scam selection buttons & states
         scam_image = pygame.image.load("sprites/scam.png").convert_alpha()
         not_scam_image = pygame.image.load("sprites/not_scam.png").convert_alpha()
-        self.scam_button = Button(x=self.rect.center[0] - 340, y=self.rect.topleft[1] + 50,
+        self.scam_button = Button(x=self.rect.center[0] - 350, y=self.rect.topleft[1] + 50,
                                       unpressed_image=scam_image, pressed_image=scam_image)
-        self.not_scam_button = Button(x=self.rect.center[0] - 215, y=self.rect.topleft[1] + 50,
+        self.scam = False
+        self.not_scam_button = Button(x=self.rect.center[0] - 225, y=self.rect.topleft[1] + 50,
                                         unpressed_image=not_scam_image, pressed_image=not_scam_image)
+        self.not_scam = False
 
-        # create selection circle
+        # create selection square for scam & not scam buttons
+        self.scam_select_image = pygame.image.load("sprites/scam_selection.png").convert_alpha()
+        self.scam_select_rect = self.scam_select_image.get_rect(center = (self.scam_button.rect.center[0],
+                                                                          self.scam_button.rect.center[1]))
+        self.not_scam_select_rect = self.scam_select_image.get_rect(center = (self.not_scam_button.rect.center[0],
+                                                                          self.not_scam_button.rect.center[1]))
+
+        # create portrait selection circle
         self.selected = False
         self.select_image = pygame.image.load("sprites/selection.png").convert_alpha()
         self.select_rect = self.select_image.get_rect(center = (self.rect.center[0] + 2, self.rect.center[1] - 2))
@@ -56,8 +65,25 @@ class Contestant(Button):
         display.blit(self.score_text, self.score_rect)
 
         # create scam and not scam selection buttons
-        self.scam_button.draw(display)
-        self.not_scam_button.draw(display)
+        # turn off other button, then switch current button state
+        if self.scam_button.draw(display):
+            self.not_scam = False
+            if self.scam == False:
+                self.scam = True
+            else:
+                self.scam = False
+
+        if self.not_scam_button.draw(display):
+            self.scam = False
+            if self.not_scam == False:
+                self.not_scam = True
+            else:
+                self.not_scam = False
+
+        if self.scam:
+            display.blit(self.scam_select_image, self.scam_select_rect)
+        if self.not_scam:
+            display.blit(self.scam_select_image, self.not_scam_select_rect)
 
         super().draw(display)
 
