@@ -21,7 +21,7 @@ pygame.display.set_caption('Scam or Not Scam')
 
 # create contestants
 cont_1_img = pygame.image.load("sprites/cont_1.png").convert_alpha()
-cont_1 = Contestant(x = 1450, y = 60, unpressed_image=cont_1_img, pressed_image=cont_1_img, name='Anatol')
+cont_1 = Contestant(x = 1450, y = 60, unpressed_image=cont_1_img, pressed_image=cont_1_img, name='C1')
 cont_2_img = pygame.image.load("sprites/cont_2.png").convert_alpha()
 cont_2 = Contestant(x = 1450, y = 390, unpressed_image=cont_2_img, pressed_image=cont_2_img, name='C2')
 cont_3_img = pygame.image.load("sprites/cont_3.png").convert_alpha()

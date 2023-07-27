@@ -71,7 +71,8 @@ class Spinner():
                  "That Lambo suddenly seems cheaper.",
                  "Time to start a youtube channel.",
                  "You could be a VC thought leader!",
-                 "Definitely still not the top."]
+                 "Definitely still not the top.",
+                 "You're a savvy investor in HarryPotterObamaSonic10Inu."]
 
         dumps = ["Gary Gensler has entered the chat.",
                  "A major exchange has collapsed.",
