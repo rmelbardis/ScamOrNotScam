@@ -1,5 +1,6 @@
 import pygame
 import random
+from ScamOrNotScam import ROOT
 
 class Spinner():
 
@@ -27,7 +28,7 @@ class Spinner():
         self.spinning = False
 
         # initiate spinner outcome text and pass empty string
-        self.font = pygame.font.Font('fonts/proxima_nova.ttf', 36)
+        self.font = pygame.font.Font(ROOT / 'fonts/proxima_nova.ttf', 36)
         self.text = ''
         self.textimg = self.font.render(self.text, False, (0, 0, 0))
         self.textrect = self.textimg.get_rect(topleft=(self.x, self.y + 775))

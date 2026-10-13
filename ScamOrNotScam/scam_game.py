@@ -1,4 +1,5 @@
 import pygame
+from ScamOrNotScam import ROOT
 
 # import objects
 from ScamOrNotScam.button import Button
@@ -20,11 +21,11 @@ screen = pygame.display.set_mode((1920, 1080))
 pygame.display.set_caption('Scam or Not Scam')
 
 # create contestants
-cont_1_img = pygame.image.load("sprites/cont_1.png").convert_alpha()
+cont_1_img = pygame.image.load(ROOT / "sprites/cont_1.png").convert_alpha()
 cont_1 = Contestant(x = 1450, y = 60, unpressed_image=cont_1_img, pressed_image=cont_1_img, name='C1')
-cont_2_img = pygame.image.load("sprites/cont_2.png").convert_alpha()
+cont_2_img = pygame.image.load(ROOT / "sprites/cont_2.png").convert_alpha()
 cont_2 = Contestant(x = 1450, y = 390, unpressed_image=cont_2_img, pressed_image=cont_2_img, name='C2')
-cont_3_img = pygame.image.load("sprites/cont_3.png").convert_alpha()
+cont_3_img = pygame.image.load(ROOT / "sprites/cont_3.png").convert_alpha()
 cont_3 = Contestant(x = 1450, y = 720, unpressed_image=cont_3_img, pressed_image=cont_3_img, name='C3')
 
 # set up states
@@ -36,8 +37,8 @@ states = {'questions': questions, 'markets': markets}
 
 # create buttons to switch between questions and markets
 
-right_arrow = pygame.image.load("sprites/forward.png").convert_alpha()
-left_arrow = pygame.image.load("sprites/back.png").convert_alpha()
+right_arrow = pygame.image.load(ROOT / "sprites/forward.png").convert_alpha()
+left_arrow = pygame.image.load(ROOT / "sprites/back.png").convert_alpha()
 forward_button = Button(x=1800, y=15, unpressed_image=right_arrow, pressed_image=right_arrow)
 back_button = Button(x=1700, y=15, unpressed_image=left_arrow, pressed_image=left_arrow)
 

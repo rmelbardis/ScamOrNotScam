@@ -1,4 +1,5 @@
 import pygame
+from ScamOrNotScam import ROOT
 from ScamOrNotScam.button import Button
 from ScamOrNotScam.spinner import Spinner
 
@@ -11,14 +12,14 @@ class Markets:
         self.cont_3 = cont_3
         self.active_cont = self.cont_1
 
-        vol_button_image = pygame.image.load("sprites/volatility.png").convert_alpha()
-        vol_button_pressed = pygame.image.load("sprites/volatility_pressed.png").convert_alpha()
+        vol_button_image = pygame.image.load(ROOT / "sprites/volatility.png").convert_alpha()
+        vol_button_pressed = pygame.image.load(ROOT / "sprites/volatility_pressed.png").convert_alpha()
         self.vol_button = Button(x=1000, y=400, unpressed_image=vol_button_image, pressed_image=vol_button_pressed)
 
-        self.pin = pygame.image.load("sprites/pin.png").convert_alpha()
+        self.pin = pygame.image.load(ROOT / "sprites/pin.png").convert_alpha()
         self.pinrect = self.pin.get_rect(topleft=(411, 15))
 
-        self.spinner_image = pygame.image.load("sprites/the_markets.png").convert_alpha()
+        self.spinner_image = pygame.image.load(ROOT / "sprites/the_markets.png").convert_alpha()
         self.spinner = Spinner(x=100, y=150, spinner_image=self.spinner_image,
                                display=self.display, degrees=0, contestant=self.active_cont)
 

@@ -1,4 +1,5 @@
 import pygame
+from ScamOrNotScam import ROOT
 from ScamOrNotScam.contestant import Contestant
 
 class Questions:
@@ -9,7 +10,7 @@ class Questions:
         self.cont_2 = cont_2
         self.cont_3 = cont_3
 
-        self.logo = pygame.image.load("sprites/sons_logo.png").convert_alpha()
+        self.logo = pygame.image.load(ROOT / "sprites/sons_logo.png").convert_alpha()
         self.logorect = self.logo.get_rect(topleft=(100, 70))
 
     def run(self):
